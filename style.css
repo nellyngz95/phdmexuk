@@ -184,10 +184,10 @@ nav {
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
   font-weight: 700;
   color: var(--ink);
-  line-height: 1.12;
+  line-height: 1.18;
   max-width: 720px;
   margin-bottom: 1.6rem;
   animation: fadeUp 0.6s 0.1s ease both;
@@ -246,12 +246,17 @@ nav {
 
 .hero-stats {
   display: flex;
-  gap: 3rem;
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid #d0d0d0;
+  gap: 0;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
   animation: fadeUp 0.6s 0.4s ease both;
   flex-wrap: wrap;
+  grid-column: 1 / -1;
+  border-top: 1px solid #d0d0d0;
+  padding-top: 2rem;
+  margin-top: 2.5rem;
+  justify-content: space-around;
 }
 .hero-stat-num {
   font-family: var(--serif);
@@ -667,11 +672,17 @@ footer {
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-rows: auto auto;
+  gap: 3rem 4rem;
   align-items: center;
 }
 
-.hero-text { display: flex; flex-direction: column; }
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1;
+  grid-row: 1;
+}
 
 .hero-image-wrap {
   position: relative;
@@ -682,6 +693,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .hero-photo {
