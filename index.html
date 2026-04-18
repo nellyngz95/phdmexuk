@@ -1,493 +1,874 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estudiantes IPN PhD MEX-UK</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+/* ============================================================
+   PhD MEX UK — Main Stylesheet
+   ============================================================ */
 
-<!-- ── NAVIGATION ─────────────────────────────────────────── -->
-<nav>
-  <div class="nav-inner">
-    <a href="#hero" class="nav-logo">
-      <!-- Mexican flag SVG inline -->
-      <span class="flag-mx" aria-label="Mexican flag">
-        <span class="flag-green"></span>
-        <span class="flag-white">
-          <!-- Simple eagle emblem dot -->
-          <span class="flag-eagle"></span>
-        </span>
-        <span class="flag-red"></span>
-      </span>
-      <!-- IPN logo placeholder — replace src with real logo file -->
-      <img src="images/ipn-logo.png" alt="IPN" class="nav-ipn-logo" onerror="this.style.display='none'" />
-      PhD<span>MEX</span>UK
-    </a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#mission"  data-en="What Happened"    data-es="Qué Pasó">What Happened</a></li>
-      <li><a href="#events"   data-en="Timeline"          data-es="Cronología">Timeline</a></li>
-      <li><a href="#news"     data-en="News"               data-es="Noticias">News</a></li>
-      <li><a href="#videos"   data-en="Videos"             data-es="Videos">Videos</a></li>
-      <li><a href="#contact"  data-en="Contact"            data-es="Contacto">Contact</a></li>
-      <li><a href="#petition" class="cta-link" data-en="Sign the Petition" data-es="Firma la Petición">Sign the Petition</a></li>
-    </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn"        id="btn-es" onclick="setLang('es')">ES</button>
-    </div>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<!-- ── HERO (split: text left, image right) ───────────────── -->
-<section id="hero">
-  <div class="hero-pattern"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner hero-split">
+:root {
+  --burgundy:   #6b1a2a;
+  --burgundy-d: #852035;
+  --green:      #2e7d4f;
+  --green-lt:   #4aab72;
+  --cream:      #f4f4f4;
+  --grey-light: #f0f0f0;
+  --grey-foot:  #ebebeb;
+  --white:      #ffffff;
+  --ink:        #111111;
+  --muted:      #555555;
+  --border:     #dddddd;
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', system-ui, sans-serif;
+}
 
-    <!-- LEFT: text -->
-    <div class="hero-text">
-      <div class="hero-tag"
-        data-en="Funding Crisis · IPN PhD Researchers · UK"
-        data-es="Crisis de Becas · Investigadores IPN · Reino Unido">
-        Funding Crisis · IPN PhD Researchers · UK
-      </div>
+html { scroll-behavior: smooth; }
 
-      <h1 class="hero-title">
-        <span data-en="Our Funding Was Cut."
-              data-es="Nos Cortaron la Beca.">Our Funding Was Cut.</span><br>
-        <em data-en="Without Warning. Without Support."
-            data-es="Sin Aviso. Sin Apoyo.">Without Warning. Without Support.</em>
-      </h1>
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 
-      <p class="hero-sub"
-        data-en="Thirty nine Mexican PhD researchers at UK universities have had their stipends stopped without explanation. We are exposing what is happening — and demanding urgent action."
-        data-es="Treinta y nueve investigadores mexicanos de doctorado en universidades del Reino Unido han visto sus becas suspendidas sin explicación. Estamos exponiendo lo que ocurre — y exigiendo acción urgente.">
-        Thirty nine Mexican PhD researchers at UK universities have had their stipends stopped without explanation. We are exposing what is happening — and demanding urgent action.
-      </p>
+/* ── NAVIGATION ───────────────────────────────────────────── */
 
-      <div class="hero-actions">
-        <a href="#petition" class="btn-primary"
-          data-en="Sign the Petition" data-es="Firma la Petición">Sign the Petition</a>
-        <a href="#mission"  class="btn-outline"
-          data-en="What Happened"    data-es="Qué Pasó">What Happened</a>
-      </div>
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e0e0e0;
+}
 
-      <div class="hero-stats">
-        <div>
-          <span class="hero-stat-num">39</span>
-          <div class="hero-stat-label"
-            data-en="Researchers Affected"
-            data-es="Investigadores Afectados">Researchers Affected</div>
-        </div>
-        <div>
-          <span class="hero-stat-num">2</span>
-          <div class="hero-stat-label"
-            data-en="UK Universities"
-            data-es="Universidades en el RU">UK Universities</div>
-        </div>
-        <div>
-          <span class="hero-stat-num">0</span>
-          <div class="hero-stat-label"
-            data-en="Official Explanations"
-            data-es="Explicaciones Oficiales">Official Explanations</div>
-        </div>
-      </div>
-    </div>
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-    <!-- RIGHT: image -->
-    <div class="hero-image-wrap">
-      <!--
-        Replace the src below with your actual image file.
-        Add the image to an images/ folder in your repo.
-        e.g. src="images/researchers.jpg"
-      -->
-      <img
-        src="images/hero-photo.jpg"
-        alt="IPN PhD researchers in the UK"
-        class="hero-photo"
-        onerror="this.parentElement.classList.add('hero-image-placeholder')"
-      />
-      <div class="hero-image-fallback">
-        <p data-en="Add your photo here" data-es="Añade tu foto aquí">Add your photo here</p>
-        <p style="font-size:0.8rem;margin-top:0.4rem;opacity:0.6" data-en="Place image in images/hero-photo.jpg" data-es="Coloca la imagen en images/hero-photo.jpg">images/hero-photo.jpg</p>
-      </div>
-    </div>
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--burgundy); }
 
-  </div>
-</section>
+.nav-links {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--burgundy); }
 
-<!-- ── WHAT HAPPENED ──────────────────────────────────────── -->
-<section id="mission">
-  <div class="container">
-    <div class="mission-grid">
+.nav-links .cta-link {
+  background: var(--burgundy);
+  color: var(--white);
+  padding: 0.45rem 1.1rem;
+  border-radius: 3px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.nav-links .cta-link:hover { background: var(--burgundy-d); color: var(--white); }
 
-      <div class="reveal">
-        <p class="section-tag"
-          data-en="What Happened" data-es="Qué Pasó">What Happened</p>
-        <h2 class="section-title"
-          data-en="A Crisis Hidden in Plain Sight"
-          data-es="Una Crisis a la Vista de Todos">A Crisis Hidden in Plain Sight</h2>
-        <div class="divider"></div>
-        <p class="section-lead"
-          data-en="In 2022, Fundación Politécnico and Instituto Politécnico Nacional formed a partnership with UK universities — offering excellence students a fully-funded 4-year PhD programme covering fees and a monthly stipend."
-          data-es="En 2022, Fundación Politécnico y el Instituto Politécnico Nacional establecieron un convenio con universidades británicas — ofreciendo a estudiantes de excelencia un programa de doctorado de 4 años con colegiaturas y manutención cubiertos.">
-          In 2022, Fundación Politécnico and Instituto Politécnico Nacional formed a partnership with UK universities — offering excellence students a fully-funded 4-year PhD programme covering fees and a monthly stipend.
-        </p>
-        <p class="mission-body-text"
-          data-en="On March 23rd, 2026, researchers received a notification from Fundación Politécnico stating that their funding would be suspended for 'temporary and preventive reasons' — with no timeline, no support plan, and no direct communication from IPN. PhD MEX UK exists to make this visible — and to hold those responsible to account."
-          data-es="El 23 de marzo de 2026, los investigadores recibieron un correo de Fundación Politécnico notificando la suspensión temporal y preventiva de sus recursos financieros — sin plazos, sin plan de apoyo y sin comunicación directa del IPN. PhD MEX UK existe para visibilizar esto — y exigir rendición de cuentas.">
-          On March 23rd, 2026, researchers received a notification from Fundación Politécnico stating that their funding would be suspended for 'temporary and preventive reasons' — with no timeline, no support plan, and no direct communication from IPN. PhD MEX UK exists to make this visible — and to hold those responsible to account.
-        </p>
-      </div>
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn.active { background: var(--burgundy); color: var(--white); }
+.lang-btn:not(.active):hover { background: var(--cream); }
 
-      <div class="mission-pillars reveal">
-        <div class="pillar">
-          <h3 data-en="Payments Stopped Without Notice"
-              data-es="Pagos Suspendidos Sin Aviso">Payments Stopped Without Notice</h3>
-          <p data-en="Stipends were abruptly suspended, leaving researchers without income overnight — no warning and no timeline. Fundación Politécnico cited a breakdown between them and IPN in 2025 as the reason."
-             data-es="Las becas fueron suspendidas de forma abrupta, dejando a los investigadores sin ingresos de la noche a la mañana. Fundación Politécnico citó el quiebre de contratos con el IPN en 2025 como motivo.">
-            Stipends were abruptly suspended, leaving researchers without income overnight — no warning and no timeline. Fundación Politécnico cited a breakdown between them and IPN in 2025 as the reason.
-          </p>
-        </div>
-        <div class="pillar">
-          <h3 data-en="An Uncertain Future"
-              data-es="Un Futuro Incierto">An Uncertain Future</h3>
-          <p data-en="UK universities and SECIHTI, with support from the Mexican Embassy in the UK, are trying to find solutions. But neither Fundación Politécnico nor the IPN has formally responded."
-             data-es="Las universidades del RU y SECIHTI, con apoyo de la embajada de México en el RU, están buscando soluciones. Pero ni Fundación Politécnico ni el IPN han respondido formalmente.">
-            UK universities and SECIHTI, with support from the Mexican Embassy in the UK, are trying to find solutions. But neither Fundación Politécnico nor the IPN has formally responded.
-          </p>
-        </div>
-        <div class="pillar">
-          <h3 data-en="Visas &amp; Legal Status at Risk"
-              data-es="Visas y Estatus Legal en Riesgo">Visas &amp; Legal Status at Risk</h3>
-          <p data-en="Without income, many researchers face the threat of losing their visa status — putting their entire academic future in jeopardy."
-             data-es="Sin ingresos, muchos investigadores enfrentan la amenaza de perder su estatus migratorio — poniendo en riesgo todo su futuro académico.">
-            Without income, many researchers face the threat of losing their visa status — putting their entire academic future in jeopardy.
-          </p>
-        </div>
-        <div class="pillar">
-          <h3 data-en="No Accountability So Far"
-              data-es="Sin Rendición de Cuentas">No Accountability So Far</h3>
-          <p data-en="Neither Fundación Politécnico nor the Instituto Politécnico Nacional has formally accepted responsibility. We are demanding transparency and urgent remediation."
-             data-es="Ni Fundación Politécnico ni el Instituto Politécnico Nacional han aceptado formalmente su responsabilidad. Exigimos transparencia y soluciones urgentes.">
-            Neither Fundación Politécnico nor the Instituto Politécnico Nacional has formally accepted responsibility. We are demanding transparency and urgent remediation.
-          </p>
-        </div>
-      </div>
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
 
-    </div>
-  </div>
-</section>
+/* ── HERO ─────────────────────────────────────────────────── */
 
-<!-- ── TIMELINE ────────────────────────────────────────────── -->
-<section id="events">
-  <div class="container">
-    <p class="section-tag reveal"
-      data-en="Cronology" data-es="Cronología">Cronology</p>
-    <h2 class="section-title reveal"
-      data-en="How Did We Get Here?" data-es="¿Cómo Llegamos Aquí?">How Did We Get Here?</h2>
-    <div class="divider reveal"></div>
-    <p class="section-lead reveal"
-      data-en="From the IPN internationalisation programme to the funding suspension — a timeline of key events."
-      data-es="Desde el programa de internacionalización del IPN hasta la suspensión de becas — una cronología de los eventos clave.">
-      From the IPN internationalisation programme to the funding suspension — a timeline of key events.
-    </p>
-    <div class="events-grid">
+#hero {
+  min-height: 100vh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
 
-      <div class="event-card reveal">
-        <div class="event-date-bar">2022 <span>· CDMX</span></div>
-        <div class="event-body">
-          <p class="event-type" data-en="Partnership" data-es="Convenio">Partnership</p>
-          <h3 data-en="The Call" data-es="La Convocatoria">The Call</h3>
-          <p data-en="Fundación Politécnico and IPN launched a call for excellence students to join a fully-funded 4-year PhD programme at UK universities, covering tuition fees and a monthly stipend."
-             data-es="Fundación Politécnico y el IPN lanzaron una convocatoria para estudiantes de excelencia para realizar un doctorado de 4 años en universidades del RU, cubriendo colegiaturas y manutención mensual.">
-            Fundación Politécnico and IPN launched a call for excellence students to join a fully-funded 4-year PhD programme at UK universities, covering tuition fees and a monthly stipend.
-          </p>
-        </div>
-      </div>
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(46, 125, 79, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 125, 79, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
 
-      <div class="event-card reveal">
-        <div class="event-date-bar">2023 <span>· London</span></div>
-        <div class="event-body">
-          <p class="event-type" data-en="Honorary Doctorate" data-es="Doctor Honoris Causa">Honorary Doctorate</p>
-          <h3 data-en="Students Informed of Underpayment" data-es="Alumnos Informados del Pago Insuficiente">Students Informed of Underpayment</h3>
-          <p data-en="The IPN Director received an honorary doctorate from the UK university partner. Students were not permitted to attend — instead they were called to a meeting with Fundación Politécnico, where they were told their stipend covered only half of the UK legal minimum."
-             data-es="El Director del IPN recibió el doctor honoris causa de la universidad socia en el RU. A los alumnos no se les permitió asistir — en cambio, fueron convocados a una junta con Fundación Politécnico, donde se les informó que la beca cubría solo la mitad del mínimo legal en el RU.">
-            The IPN Director received an honorary doctorate from the UK university partner. Students were not permitted to attend — instead they were called to a meeting with Fundación Politécnico, where they were told their stipend covered only half of the UK legal minimum.
-          </p>
-        </div>
-      </div>
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(107, 26, 42, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-      <div class="event-card reveal">
-        <div class="event-date-bar">Summer 2024 <span>· London</span></div>
-        <div class="event-body">
-          <p class="event-type" data-en="Symposium" data-es="Simposio">Symposium</p>
-          <h3 data-en="First Mexican Symposium" data-es="Primer Simposio Mexicano">First Mexican Symposium</h3>
-          <p data-en="Students from the first two cohorts were asked to staff and present their research. The IPN General Director and Fundación Politécnico signed new contracts with the UK university — but held no meeting with the PhD students themselves."
-             data-es="Los estudiantes de las dos primeras generaciones fueron contactados para ser staff y presentar sus avances. El Director General del IPN y Fundación Politécnico firmaron acuerdos con la universidad británica — pero no se reunieron con los estudiantes de doctorado.">
-            Students from the first two cohorts were asked to staff and present their research. The IPN General Director and Fundación Politécnico signed new contracts with the UK university — but held no meeting with the PhD students themselves.
-          </p>
-        </div>
-      </div>
+.hero-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+}
 
-      <div class="event-card reveal">
-        <div class="event-date-bar">2025 <span>· London</span></div>
-        <div class="event-body">
-          <p class="event-type" data-en="Scholarship Revoked" data-es="Beca Cancelada">Scholarship Revoked</p>
-          <h3 data-en="A Student Loses Their Funding" data-es="Un Estudiante Pierde su Beca">A Student Loses Their Funding</h3>
-          <p data-en="One student's scholarship was revoked with no formal communication or response from IPN or Fundación Politécnico, despite submitting all required documentation."
-             data-es="La beca de un estudiante fue cancelada sin comunicación formal ni respuesta del IPN o Fundación Politécnico, a pesar de haber enviado toda la documentación requerida.">
-            One student's scholarship was revoked with no formal communication or response from IPN or Fundación Politécnico, despite submitting all required documentation.
-          </p>
-        </div>
-      </div>
+.hero-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  border: 1px solid rgba(107, 26, 42, 0.35);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+  margin-bottom: 1.8rem;
+  animation: fadeUp 0.6s ease both;
+}
 
-      <div class="event-card reveal">
-        <div class="event-date-bar">23 Mar 2026 <span>· UK</span></div>
-        <div class="event-body">
-          <p class="event-type" data-en="Funding Suspended" data-es="Becas Suspendidas">Funding Suspended</p>
-          <h3 data-en="The Crisis Begins" data-es="Comienza la Crisis">The Crisis Begins</h3>
-          <p data-en="All 39 researchers receive an email from Fundación Politécnico stating their funding is suspended 'temporarily and preventively' — citing the breakdown of contracts between IPN and Fundación in 2025. No timeline, no support, no plan."
-             data-es="Los 39 investigadores reciben un correo de Fundación Politécnico suspendiendo sus becas 'de forma temporal y preventiva' — citando la ruptura de contratos entre IPN y Fundación en 2025. Sin plazos, sin apoyo, sin plan.">
-            All 39 researchers receive an email from Fundación Politécnico stating their funding is suspended 'temporarily and preventively' — citing the breakdown of contracts between IPN and Fundación in 2025. No timeline, no support, no plan.
-          </p>
-        </div>
-      </div>
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.12;
+  max-width: 720px;
+  margin-bottom: 1.6rem;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero-title em { font-style: normal; color: var(--burgundy); }
 
-    </div>
-  </div>
-</section>
+.hero-sub {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 2.6rem;
+  line-height: 1.75;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
 
-<!-- ── NEWS ───────────────────────────────────────────────── -->
-<section id="news">
-  <div class="container">
-    <p class="section-tag reveal"
-      data-en="Latest" data-es="Últimas Noticias">Latest</p>
-    <h2 class="section-title reveal"
-      data-en="News &amp; Updates" data-es="Noticias y Actualizaciones">News &amp; Updates</h2>
-    <div class="divider reveal"></div>
-    <div class="news-list">
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
 
-      <div class="news-item reveal">
-        <div class="news-date">Mar 2026</div>
-        <div class="news-content">
-          <h3 data-en="Fundación Politécnico suspends funding to 39 IPN PhD researchers in the UK without explanation"
-              data-es="Fundación Politécnico suspende becas a 39 investigadores doctorales del IPN en el RU sin explicación">
-            Fundación Politécnico suspends funding to 39 IPN PhD researchers in the UK without explanation
-          </h3>
-          <p data-en="Researchers received a single email citing 'preventive' reasons — no timeline, no emergency support, and no formal response from IPN."
-             data-es="Los investigadores recibieron un solo correo citando razones 'preventivas' — sin plazos, sin apoyo de emergencia y sin respuesta formal del IPN.">
-            Researchers received a single email citing 'preventive' reasons — no timeline, no emergency support, and no formal response from IPN.
-          </p>
-        </div>
-        <span class="news-tag-pill" data-en="Crisis" data-es="Crisis">Crisis</span>
-      </div>
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  padding: 0.85rem 2rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--burgundy-d); transform: translateY(-1px); }
 
-      <div class="news-item reveal">
-        <div class="news-date">Apr 2026</div>
-        <div class="news-content">
-          <h3 data-en="Mexican Embassy and SECIHTI engage UK universities to seek emergency solutions"
-              data-es="La embajada de México y SECIHTI se coordinan con universidades del RU para buscar soluciones de emergencia">
-            Mexican Embassy and SECIHTI engage UK universities to seek emergency solutions
-          </h3>
-          <p data-en="Diplomatic and institutional channels have been activated — but IPN and Fundación Politécnico remain silent."
-             data-es="Se han activado canales diplomáticos e institucionales — pero el IPN y Fundación Politécnico permanecen en silencio.">
-            Diplomatic and institutional channels have been activated — but IPN and Fundación Politécnico remain silent.
-          </p>
-        </div>
-        <span class="news-tag-pill" data-en="Diplomatic" data-es="Diplomático">Diplomatic</span>
-      </div>
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.85rem 2rem;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--burgundy); color: var(--burgundy); }
 
-    </div>
-  </div>
-</section>
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #d0d0d0;
+  animation: fadeUp 0.6s 0.4s ease both;
+  flex-wrap: wrap;
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  display: block;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+}
 
-<!-- ── VIDEOS ──────────────────────────────────────────────── -->
-<section id="videos">
-  <div class="container">
-    <p class="section-tag reveal"
-      data-en="Testimonies" data-es="Testimonios">Testimonies</p>
-    <h2 class="section-title reveal"
-      data-en="Watch &amp; Share" data-es="Mira y Comparte">Watch &amp; Share</h2>
-    <div class="divider reveal"></div>
-    <p class="section-lead reveal"
-      data-en="First-hand accounts from affected researchers. Watch, share, and help us spread the word."
-      data-es="Testimonios directos de los investigadores afectados. Mira, comparte y ayúdanos a difundir.">
-      First-hand accounts from affected researchers. Watch, share, and help us spread the word.
-    </p>
-    <div class="videos-grid">
+/* ── SHARED SECTION STYLES ────────────────────────────────── */
 
-      <!-- Video card 1 — replace YOUR-VIDEO-ID-1 with real YouTube ID -->
-      <div class="video-card reveal">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/YOUR-VIDEO-ID-1"
-            title="Testimony 1"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="video-body">
-          <p class="event-type" data-en="Testimony" data-es="Testimonio">Testimony</p>
-          <h3 data-en="Title of video 1" data-es="Título del video 1">Title of video 1</h3>
-          <p data-en="Short description of this video or testimony." data-es="Descripción breve de este video o testimonio.">Short description of this video or testimony.</p>
-        </div>
-      </div>
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
 
-      <!-- Video card 2 — replace YOUR-VIDEO-ID-2 -->
-      <div class="video-card reveal">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/YOUR-VIDEO-ID-2"
-            title="Testimony 2"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="video-body">
-          <p class="event-type" data-en="Testimony" data-es="Testimonio">Testimony</p>
-          <h3 data-en="Title of video 2" data-es="Título del video 2">Title of video 2</h3>
-          <p data-en="Short description of this video or testimony." data-es="Descripción breve de este video o testimonio.">Short description of this video or testimony.</p>
-        </div>
-      </div>
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--burgundy);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+.section-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--green);
+  margin: 1.2rem 0 2rem;
+  border-radius: 2px;
+}
 
-      <!-- Video card 3 — replace YOUR-VIDEO-ID-3 -->
-      <div class="video-card reveal">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/YOUR-VIDEO-ID-3"
-            title="Testimony 3"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="video-body">
-          <p class="event-type" data-en="Media Coverage" data-es="Cobertura Mediática">Media Coverage</p>
-          <h3 data-en="Title of video 3" data-es="Título del video 3">Title of video 3</h3>
-          <p data-en="Short description of this video or testimony." data-es="Descripción breve de este video o testimonio.">Short description of this video or testimony.</p>
-        </div>
-      </div>
+/* ── MISSION ──────────────────────────────────────────────── */
 
-    </div>
-  </div>
-</section>
+#mission { background: var(--cream); }
 
-<!-- ── PETITION + CONTACT (two columns merged) ────────────── -->
-<section id="contact">
-  <div class="petition-contact-wrap">
-    <div class="petition-contact-grid">
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
 
-      <!-- LEFT: Petition CTA -->
-      <div class="petition-col">
-        <div class="petition-pattern"></div>
-        <div class="petition-col-inner">
-          <div class="petition-tag"
-            data-en="Take Action" data-es="Toma Acción">Take Action</div>
-          <h2 class="petition-title">
-            <span data-en="Every Signature"    data-es="Cada Firma">Every Signature</span><br>
-            <em   data-en="Demands an Answer." data-es="Exige una Respuesta.">Demands an Answer.</em>
-          </h2>
-          <p class="petition-sub"
-            data-en="Sign our Change.org petition to demand that Fundación Politécnico and Instituto Politécnico Nacional restore funding immediately and provide a formal explanation."
-            data-es="Firma nuestra petición en Change.org para exigir que Fundación Politécnico y el Instituto Politécnico Nacional restauren las becas de inmediato y den una explicación formal.">
-            Sign our Change.org petition to demand that Fundación Politécnico and Instituto Politécnico Nacional restore funding immediately and provide a formal explanation.
-          </p>
-          <!-- Replace href with your real Change.org URL -->
-          <a href="https://www.change.org/YOUR-PETITION-URL"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn-petition"
-             data-en="Sign the Petition on Change.org"
-             data-es="Firma la Petición en Change.org">
-            Sign the Petition on Change.org
-          </a>
-          <p class="petition-note"
-            data-en="Opens Change.org in a new tab. Free to sign, takes less than a minute."
-            data-es="Abre Change.org en una nueva pestaña. Gratis, toma menos de un minuto.">
-            Opens Change.org in a new tab. Free to sign, takes less than a minute.
-          </p>
-        </div>
-      </div>
+.mission-body-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
 
-      <!-- RIGHT: Contact -->
-      <div class="contact-col">
-        <p class="section-tag"
-          data-en="Get in Touch" data-es="Contáctanos">Get in Touch</p>
-        <h2 class="section-title"
-          data-en="Contact Us" data-es="Contacto">Contact Us</h2>
-        <div class="divider"></div>
-        <div class="contact-list">
+.mission-pillars { display: grid; gap: 1.5rem; }
 
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <h3 data-en="Email" data-es="Correo">Email</h3>
-              <p data-en="For general enquiries and media requests" data-es="Para consultas generales y solicitudes de prensa">For general enquiries and media requests</p>
-              <a href="mailto:estudiantesphdmexicouk@gmail.com">estudiantesphdmexicouk@gmail.com</a>
-            </div>
-          </div>
+.pillar {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+  padding: 1.5rem 1.6rem;
+  border-radius: 0 4px 4px 0;
+  transition: box-shadow 0.2s;
+}
+.pillar:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
+.pillar h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  margin-bottom: 0.4rem;
+}
+.pillar p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-            </div>
-            <div>
-              <h3>Twitter / X</h3>
-              <p data-en="Follow us for campaign updates" data-es="Síguenos para actualizaciones">Follow us for campaign updates</p>
-              <a href="https://twitter.com/phdmexuk" target="_blank">@phdmexuk</a>
-            </div>
-          </div>
+/* ── EVENTS ───────────────────────────────────────────────── */
 
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
-            <div>
-              <h3>Instagram</h3>
-              <p data-en="Follow our campaign for updates and stories" data-es="Sigue nuestra campaña para actualizaciones">Follow our campaign for updates and stories</p>
-              <a href="https://instagram.com/phdmexuk" target="_blank">@phdmexuk</a>
-            </div>
-          </div>
+#events { background: var(--white); }
 
-        </div>
-      </div>
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.8rem;
+}
 
-    </div>
-  </div>
-</section>
+.event-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.event-card:hover { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.09); transform: translateY(-3px); }
 
-<!-- ── FOOTER ──────────────────────────────────────────────── -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">PhD<span>MEX</span>UK</div>
-    <nav class="footer-links">
-      <a href="#mission"  data-en="What Happened"    data-es="Qué Pasó">What Happened</a>
-      <a href="#events"   data-en="Timeline"          data-es="Cronología">Timeline</a>
-      <a href="#news"     data-en="News"               data-es="Noticias">News</a>
-      <a href="#videos"   data-en="Videos"             data-es="Videos">Videos</a>
-      <a href="#contact"  data-en="Sign &amp; Contact" data-es="Firma y Contacto">Sign &amp; Contact</a>
-    </nav>
-    <p class="footer-copy"
-      data-en="&copy; 2026 PhD MEX UK. All rights reserved."
-      data-es="&copy; 2026 PhD MEX UK. Todos los derechos reservados.">
-      &copy; 2026 PhD MEX UK. All rights reserved.
-    </p>
-  </div>
-</footer>
+.event-date-bar {
+  background: var(--burgundy);
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.event-date-bar span {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+}
 
-<script src="main.js"></script>
-</body>
-</html>
+.event-body { padding: 1.4rem; }
+.event-type {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.event-body h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.event-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+
+.event-link {
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--burgundy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.event-link:hover { color: var(--green); }
+
+/* ── NEWS ─────────────────────────────────────────────────── */
+
+#news { background: var(--cream); }
+
+.news-list { display: grid; gap: 1.2rem; }
+
+.news-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.6rem 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.news-item:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
+
+.news-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.news-content h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--burgundy);
+  margin-bottom: 0.25rem;
+}
+.news-content p { font-size: 0.88rem; color: var(--muted); }
+
+.news-tag-pill {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: rgba(46, 125, 79, 0.1);
+  color: #1a5c35;
+  border: 1px solid rgba(46, 125, 79, 0.25);
+  padding: 0.25rem 0.7rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* ── STAND WITH US (petition CTA) ─────────────────────────── */
+
+#petition {
+  background: var(--burgundy);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem;
+}
+
+.petition-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.petition-inner {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.petition-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+  margin-bottom: 1.8rem;
+}
+
+.petition-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.4rem;
+}
+.petition-title em { font-style: normal; color: rgba(255, 255, 255, 0.65); }
+
+.petition-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.75;
+  margin-bottom: 2.6rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-petition {
+  display: inline-block;
+  background: var(--white);
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  padding: 1rem 2.6rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.btn-petition:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.petition-note {
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── CONTACT ──────────────────────────────────────────────── */
+
+#contact { background: var(--white); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.contact-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.contact-card:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(46, 125, 79, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+.contact-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.contact-card h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--burgundy);
+  margin-bottom: 0.4rem;
+}
+.contact-card p { font-size: 0.88rem; color: var(--muted); }
+.contact-card a {
+  color: var(--burgundy);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+}
+.contact-card a:hover { color: var(--green); }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+
+footer {
+  background: var(--grey-foot);
+  color: var(--muted);
+  padding: 2.5rem 2rem;
+  border-top: 1px solid #d8d8d8;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); font-weight: 700; }
+.footer-logo span { color: var(--burgundy); }
+
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--burgundy); }
+
+.footer-copy { font-size: 0.78rem; }
+
+/* ── ANIMATIONS & UTILITIES ───────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: var(--white);
+    padding: 1.5rem 2rem;
+    gap: 1.2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .mission-grid,
+  .contact-grid,
+  .form-row { grid-template-columns: 1fr; }
+  .news-item { grid-template-columns: 1fr; }
+  .hero-stats { gap: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ── HERO SPLIT LAYOUT ────────────────────────────────────── */
+
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text { display: flex; flex-direction: column; }
+
+.hero-image-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 420px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.hero-image-fallback {
+  display: none;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 2rem;
+}
+
+.hero-image-wrap.hero-image-placeholder .hero-image-fallback { display: block; }
+.hero-image-wrap.hero-image-placeholder .hero-photo { display: none; }
+
+/* ── NAV LOGO — FLAG + IPN ────────────────────────────────── */
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Inline flag made of CSS stripes */
+.flag-mx {
+  display: inline-flex;
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.flag-green { flex: 1; background: #006847; }
+.flag-white {
+  flex: 1;
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flag-eagle {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #8B3A2A;
+  opacity: 0.7;
+}
+.flag-red { flex: 1; background: #CE1126; }
+
+/* IPN logo image in nav */
+.nav-ipn-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ── VIDEOS SECTION ───────────────────────────────────────── */
+
+#videos { background: var(--white); }
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.8rem;
+}
+
+.video-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: var(--white);
+}
+.video-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.09); transform: translateY(-3px); }
+
+.video-embed {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  background: #111;
+}
+.video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.video-body {
+  padding: 1.2rem 1.4rem;
+}
+.video-body h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--burgundy);
+  margin: 0.3rem 0 0.5rem;
+  line-height: 1.3;
+}
+.video-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+/* ── PETITION + CONTACT MERGED ────────────────────────────── */
+
+.petition-contact-wrap {
+  background: var(--white);
+}
+
+.petition-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+}
+
+/* Left column — petition (dark burgundy) */
+.petition-col {
+  background: var(--burgundy);
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 3rem;
+  display: flex;
+  align-items: center;
+}
+.petition-col-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Right column — contact (light grey) */
+.contact-col {
+  background: var(--cream);
+  padding: 5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Contact list (vertical stack, no cards) */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin-top: 0.5rem;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.contact-item .contact-icon {
+  margin: 0;
+  flex-shrink: 0;
+}
+.contact-item h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--burgundy);
+  margin-bottom: 0.2rem;
+}
+.contact-item p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.contact-item a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--burgundy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+}
+.contact-item a:hover { color: var(--green); }
+
+/* ── RESPONSIVE ADDITIONS ─────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hero-split { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-image-wrap { min-height: 260px; }
+  .petition-contact-grid { grid-template-columns: 1fr; }
+  .petition-col, .contact-col { padding: 3rem 1.5rem; }
+  .videos-grid { grid-template-columns: 1fr; }
+}
