@@ -1029,3 +1029,33 @@ footer {
   padding: 0.4rem 0.6rem;
   line-height: 1.4;
 }
+/* ── NEWS IMAGE THUMBNAIL ─────────────────────────────────── */
+.news-image-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  text-decoration: none;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--cream);
+  transition: box-shadow 0.2s;
+}
+.news-image-link:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.news-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.news-image-caption {
+  font-size: 0.82rem;
+  color: var(--burgundy);
+  font-weight: 500;
+  line-height: 1.4;
+}
