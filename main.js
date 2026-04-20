@@ -2,7 +2,7 @@
    PhD MEX UK — Main JavaScript
    ============================================================ */
 
-let currentLang = 'en';
+let currentLang = 'es';
 
 /* ── Language switching ─────────────────────────────────── */
 function setLang(lang) {
